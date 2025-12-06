@@ -159,7 +159,6 @@ function HeroGeometric({
                             {badge}
                         </span>
                     </motion.div>
-
                     <motion.div
                         custom={1}
                         variants={fadeUpVariants}

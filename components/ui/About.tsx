@@ -233,7 +233,7 @@ export default function About() {
               >
                
                 <img
-                  src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?q=80&w=1000&auto=format&fit=crop"
+                  src="/character.png"
                   alt="Feature Image"
                   className="w-full h-[400px] object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />
@@ -247,13 +247,14 @@ export default function About() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
                 >
-                  <motion.button
+                  <motion.a href="https://drive.google.com/drive/folders/11Cc6QY7wDl7aeetPDv1eHe_Y0sLukeCJ?usp=drive_link"
+                    target  ="_blank"
                     className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-2 rounded-full flex items-center gap-2 text-sm font-medium hover:bg-white hover:text-black transition-all"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     My Resume <ArrowRight className="w-4 h-4" />
-                  </motion.button>
+                  </motion.a>
                 </motion.div>
               </motion.div>
 
