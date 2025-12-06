@@ -1,6 +1,6 @@
 import { HeroGeometric } from "@/components/ui/shape-landing-hero";
 import Header from "@/components/ui/Header";
-import StackFeatureSection from "@/components/ui/stack-feature-section";
+import Project from "@/components/ui/Project";
 import About from "@/components/ui/About";
 import Contact from "@/components/ui/Contact";
 import Footer from "@/components/ui/Footer";
@@ -20,7 +20,7 @@ export default function Home() {
         <About />
       </section>
       <section id="projects" className="scroll-mt-24">
-        <StackFeatureSection />
+        <Project />
       </section>
       <section id="contact" className="scroll-mt-24">
         <Contact />
