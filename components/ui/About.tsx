@@ -4,8 +4,6 @@ import type React from "react";
 import { useState, useEffect, useRef } from "react";
 import {
   Pen,
-  PaintBucket,
-  Home,
   Ruler,
   PenTool,
   Building2,
@@ -74,11 +72,12 @@ export default function About() {
     },
   };
 
+  // Services Icons updated to Blue/Cyan theme
   const services = [
     {
       icon: <PenTool className="w-6 h-6" />,
       secondaryIcon: (
-        <Star className="w-4 h-4 absolute -top-1 -right-1 text-yellow-400" />
+        <Star className="w-4 h-4 absolute -top-1 -right-1 text-cyan-400" />
       ),
       title: "UI/UX Design",
       description:
@@ -88,7 +87,7 @@ export default function About() {
     {
       icon: <Pen className="w-6 h-6" />,
       secondaryIcon: (
-        <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-yellow-400" />
+        <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-blue-400" />
       ),
       title: "Front-End Dev",
       description:
@@ -98,7 +97,7 @@ export default function About() {
     {
       icon: <Ruler className="w-6 h-6" />,
       secondaryIcon: (
-        <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-yellow-400" />
+        <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-cyan-400" />
       ),
       title: "Clean Code",
       description:
@@ -108,7 +107,7 @@ export default function About() {
     {
       icon: <Zap className="w-6 h-6" />,
       secondaryIcon: (
-        <Star className="w-4 h-4 absolute -top-1 -right-1 text-yellow-400" />
+        <Star className="w-4 h-4 absolute -top-1 -right-1 text-blue-400" />
       ),
       title: "Performance",
       description:
@@ -118,7 +117,7 @@ export default function About() {
     {
       icon: <Users className="w-6 h-6" />,
       secondaryIcon: (
-        <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-yellow-400" />
+        <CheckCircle className="w-4 h-4 absolute -top-1 -right-1 text-cyan-400" />
       ),
       title: "Collaboration",
       description:
@@ -128,7 +127,7 @@ export default function About() {
     {
       icon: <Building2 className="w-6 h-6" />,
       secondaryIcon: (
-        <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-yellow-400" />
+        <Sparkles className="w-4 h-4 absolute -top-1 -right-1 text-blue-400" />
       ),
       title: "Innovation",
       description:
@@ -150,13 +149,13 @@ export default function About() {
       ref={sectionRef}
       className="w-full py-24 px-4 bg-black text-white overflow-hidden relative"
     >
-      {/* Decorative background elements */}
+      {/* Decorative Blobs Only (No Grid) */}
       <motion.div
-        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#88734C]/10 blur-[100px]"
+        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-600/20 blur-[100px]"
         style={{ y: y1, rotate: rotate1 }}
       />
       <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-blue-500/10 blur-[120px]"
+        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-cyan-500/10 blur-[120px]"
         style={{ y: y2, rotate: rotate2 }}
       />
 
@@ -170,8 +169,9 @@ export default function About() {
           className="flex flex-col items-center mb-6"
           variants={itemVariants}
         >
+          {/* My Journey: Structure restored, Color updated to Blue */}
           <motion.span
-            className="text-[#88734C] font-medium mb-2 flex items-center gap-2 tracking-widest text-sm uppercase"
+            className="text-blue-500 font-medium mb-2 flex items-center gap-2 tracking-widest text-sm uppercase"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -181,11 +181,11 @@ export default function About() {
           </motion.span>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
-            About Me
+            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Me</span>
           </h2>
 
           <motion.div
-            className="w-24 h-1 bg-[#88734C]"
+            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: 96 }}
             transition={{ duration: 1, delay: 0.5 }}
@@ -193,13 +193,12 @@ export default function About() {
         </motion.div>
 
         <motion.p
-          className="text-center max-w-2xl mx-auto mb-16 text-neutral-400 leading-relaxed"
+          className="text-center max-w-2xl mx-auto mb-16 text-gray-400 leading-relaxed text-lg"
           variants={itemVariants}
         >
           Computer Science graduate from Udayana University with 2 years of
           experience in UI/UX Design and Front-End Development. Adaptable,
-          creative, and eager to join innovative teams that value impactful
-          design and modern tech stacks.
+          creative, and eager to join innovative teams.
         </motion.p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -225,7 +224,7 @@ export default function About() {
               variants={itemVariants}
             >
               <motion.div
-                className="rounded-2xl overflow-hidden shadow-2xl shadow-black border border-white/10"
+                className="rounded-2xl overflow-hidden shadow-[0_0_30px_rgba(59,130,246,0.2)] border border-white/10"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
@@ -239,7 +238,7 @@ export default function About() {
                 />
 
                 {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
 
                 <motion.div
                   className="absolute bottom-6 left-0 right-0 flex justify-center"
@@ -247,20 +246,22 @@ export default function About() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
                 >
-                  <motion.a href="https://drive.google.com/drive/folders/11Cc6QY7wDl7aeetPDv1eHe_Y0sLukeCJ?usp=drive_link"
-                    target  ="_blank"
-                    className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-6 py-2 rounded-full flex items-center gap-2 text-sm font-medium hover:bg-white hover:text-black transition-all"
+                  <motion.a 
+                    href="https://drive.google.com/drive/folders/11Cc6QY7wDl7aeetPDv1eHe_Y0sLukeCJ?usp=drive_link"
+                    target ="_blank"
+                    className="group bg-white text-black px-6 py-2 rounded-full flex items-center gap-2 text-sm font-bold hover:bg-blue-50 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    My Resume <ArrowRight className="w-4 h-4" />
+                    My Resume 
+                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </motion.a>
                 </motion.div>
               </motion.div>
 
-              {/* Floating accent elements */}
+              {/* Floating accent elements (Blue Border) */}
               <motion.div
-                className="absolute inset-0 border border-[#88734C]/30 rounded-2xl -m-4 z-[-1]"
+                className="absolute inset-0 border border-blue-500/30 rounded-2xl -m-4 z-[-1]"
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
@@ -308,7 +309,7 @@ interface ServiceItemProps {
   secondaryIcon?: React.ReactNode;
   title: string;
   description: string;
-  variants: Variants; // Fix type here too
+  variants: Variants; 
   delay: number;
   direction: "left" | "right";
 }
@@ -337,11 +338,10 @@ function ServiceItem({
         transition={{ duration: 0.6, delay: delay + 0.2 }}
       >
         <motion.div
-          className="text-[#88734C] bg-neutral-900 border border-white/5 p-4 rounded-xl shadow-lg relative shrink-0"
+          className="text-blue-400 bg-white/5 border border-white/10 p-4 rounded-xl shadow-lg relative shrink-0 group-hover:border-blue-500/50 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300"
           whileHover={{
             scale: 1.1,
             rotate: 5,
-            borderColor: "rgba(136, 115, 76, 0.5)",
           }}
         >
           {icon}
@@ -349,19 +349,19 @@ function ServiceItem({
         </motion.div>
 
         <div>
-          <h3 className="text-lg font-bold text-white group-hover:text-[#88734C] transition-colors duration-300">
+          <h3 className="text-lg font-bold text-white group-hover:text-blue-400 transition-colors duration-300">
             {title}
           </h3>
           <div
-            className={`h-0.5 w-10 bg-[#88734C]/50 mt-1 ${
+            className={`h-0.5 w-10 bg-blue-500/50 mt-1 ${
               direction === "right" ? "ml-auto" : ""
-            } group-hover:w-full transition-all duration-300`}
+            } group-hover:w-full group-hover:bg-cyan-400 transition-all duration-300`}
           ></div>
         </div>
       </motion.div>
 
       <motion.p
-        className={`text-sm text-neutral-400 leading-relaxed ${
+        className={`text-sm text-gray-400 leading-relaxed ${
           direction === "left" ? "md:pl-20" : "md:pr-20 md:text-right"
         }`}
         initial={{ opacity: 0 }}
@@ -401,14 +401,14 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
 
   return (
     <motion.div
-      className="bg-neutral-900/50 backdrop-blur-sm border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center group hover:bg-neutral-800/80 hover:border-[#88734C]/30 transition-all duration-300"
+      className="bg-white/5 backdrop-blur-sm border border-white/5 p-6 rounded-2xl flex flex-col items-center text-center group hover:bg-white/10 hover:border-blue-500/30 transition-all duration-300"
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay } },
       }}
       whileHover={{ y: -5 }}
     >
-      <motion.div className="w-12 h-12 rounded-full bg-black border border-white/10 flex items-center justify-center mb-4 text-[#88734C] group-hover:scale-110 transition-transform duration-300">
+      <motion.div className="w-12 h-12 rounded-full bg-black/50 border border-white/10 flex items-center justify-center mb-4 text-blue-400 group-hover:text-cyan-300 group-hover:scale-110 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.3)] transition-all duration-300">
         {icon}
       </motion.div>
 
@@ -417,10 +417,10 @@ function StatCounter({ icon, value, label, suffix, delay }: StatCounterProps) {
         className="text-3xl font-bold text-white flex items-center"
       >
         <motion.span>{displayValue}</motion.span>
-        <span className="text-[#88734C]">{suffix}</span>
+        <span className="text-blue-500">{suffix}</span>
       </motion.div>
 
-      <p className="text-neutral-500 text-sm mt-1">{label}</p>
+      <p className="text-gray-400 text-sm mt-1">{label}</p>
     </motion.div>
   );
 }

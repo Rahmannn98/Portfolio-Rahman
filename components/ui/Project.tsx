@@ -1,8 +1,17 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import React from "react";
 import { cn } from "@/lib/utils";
+// PERUBAHAN DISINI: Mengganti Zap dengan Briefcase (atau icon pilihan lain)
+import { Briefcase } from "lucide-react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  Variants,
+} from "framer-motion";
 
 const GlareCard = ({
   children,
@@ -62,7 +71,7 @@ const GlareCard = ({
   return (
     <div
       style={containerStyle}
-      className="relative isolate [contain:layout_style] [perspective:600px] transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-transform w-[320px] [aspect-ratio:17/21]"
+      className="relative isolate [contain:layout_style] [perspective:600px] transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-transform w-full md:w-[320px] [aspect-ratio:17/21]"
       ref={refElement}
       onPointerMove={(event) => {
         const rotateFactor = 0.4;
@@ -111,9 +120,9 @@ const GlareCard = ({
         }
       }}
     >
-      <div className="h-full grid will-change-transform origin-center transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] [transform:rotateY(var(--r-x))_rotateX(var(--r-y))] rounded-[var(--radius)] border border-slate-800 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden">
+      <div className="h-full grid will-change-transform origin-center transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] [transform:rotateY(var(--r-x))_rotateX(var(--r-y))] rounded-[var(--radius)] border border-white/10 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden">
         <div className="w-full h-full grid [grid-area:1/1] mix-blend-soft-light [clip-path:inset(0_0_0_0_round_var(--radius))]">
-          <div className={cn("h-full w-full bg-slate-950", className)}>
+          <div className={cn("h-full w-full bg-black/80", className)}>
             {children}
           </div>
         </div>
@@ -158,41 +167,121 @@ const projectsData = [
 ];
 
 export default function Project() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
+  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 20]);
+  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -20]);
+
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.6, ease: "easeInOut" },
+    },
+  };
+
   return (
-    <div className="container mx-auto px-4 py-24">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Featured Projects
-        </h2>
-        <p className="text-neutral-400 max-w-2xl mx-auto">
-          Here are some of the projects I&apos;ve worked on, ranging from web
-          applications to complex management systems.
-        </p>
-      </div>
+    <section 
+      ref={sectionRef} 
+      className="w-full py-24 px-4 bg-black text-white relative overflow-hidden"
+    >
+       <motion.div
+        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-600/20 blur-[100px]"
+        style={{ y: y1, rotate: rotate1 }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-cyan-500/10 blur-[120px]"
+        style={{ y: y2, rotate: rotate2 }}
+      />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center">
-        {projectsData.map((project, index) => (
-          <GlareCard
-            key={index}
-            className="flex flex-col items-start justify-end py-8 px-6"
+      <motion.div 
+        className="container mx-auto relative z-10"
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+        variants={containerVariants}
+      >
+        <motion.div
+          className="flex flex-col items-center mb-16"
+          variants={itemVariants}
+        >
+          <motion.span
+            className="text-blue-500 font-medium mb-2 flex items-center gap-2 tracking-widest text-sm uppercase"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <img
-              className="absolute inset-0 h-full w-full object-cover opacity-50 hover:opacity-100 transition-opacity duration-500"
-              src={project.image}
-              alt={project.title}
-            />
-            
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+            {/* PERUBAHAN DISINI: Icon Briefcase menggantikan Zap */}
+            <Briefcase className="w-4 h-4" />
+            My Work
+          </motion.span>
 
-            <div className="relative z-10">
-              <p className="font-bold text-white text-lg">{project.title}</p>
-              <p className="font-normal text-base text-neutral-200 mt-2 line-clamp-3">
-                {project.description}
-              </p>
-            </div>
-          </GlareCard>
-        ))}
-      </div>
-    </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Projects</span>
+          </h2>
+
+          <motion.div
+            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-8"
+            initial={{ width: 0 }}
+            animate={{ width: 96 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          ></motion.div>
+
+          <p className="text-neutral-400 max-w-2xl mx-auto text-center text-lg leading-relaxed">
+            Here are some of the projects I&apos;ve worked on, ranging from web
+            applications to complex management systems.
+          </p>
+        </motion.div>
+
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center"
+          variants={containerVariants}
+        >
+          {projectsData.map((project, index) => (
+            <motion.div 
+              key={index} 
+              variants={itemVariants}
+              className="w-full flex justify-center"
+            >
+              <GlareCard className="flex flex-col items-start justify-end py-8 px-6">
+                <img
+                  className="absolute inset-0 h-full w-full object-cover opacity-60 hover:opacity-100 transition-opacity duration-500"
+                  src={project.image}
+                  alt={project.title}
+                />
+                
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+
+                <div className="relative z-10">
+                  <p className="font-bold text-white text-lg">{project.title}</p>
+                  <p className="font-normal text-sm text-neutral-300 mt-2 line-clamp-3">
+                    {project.description}
+                  </p>
+                </div>
+              </GlareCard>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </section>
   );
 }
