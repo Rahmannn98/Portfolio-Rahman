@@ -23,7 +23,7 @@ import {
   useTransform,
   useInView,
   useSpring,
-  Variants, 
+  Variants,
 } from "framer-motion";
 
 export default function About() {
@@ -51,7 +51,6 @@ export default function About() {
     return () => clearTimeout(timer);
   }, []);
 
-  
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -81,7 +80,7 @@ export default function About() {
       ),
       title: "UI/UX Design",
       description:
-        "Creating intuitive and visually appealing interfaces that users love.",
+        "Led redesign processes and usability testing to improve user experience scores.",
       position: "left",
     },
     {
@@ -91,7 +90,7 @@ export default function About() {
       ),
       title: "Front-End Dev",
       description:
-        "Building responsive and interactive websites using modern tech stacks.",
+        "Expert in Vue, Next.js, and Tailwind CSS to build responsive interfaces.",
       position: "left",
     },
     {
@@ -121,7 +120,7 @@ export default function About() {
       ),
       title: "Collaboration",
       description:
-        "Experienced in working with teams and contributing to social initiatives.",
+        "Experienced in cross-team collaboration for delivering functional solutions.",
       position: "right",
     },
     {
@@ -131,7 +130,7 @@ export default function About() {
       ),
       title: "Innovation",
       description:
-        "Always learning new technologies to bring fresh ideas to the table.",
+        "Expanding skills in AR (SwiftUI) and interactive web technologies.",
       position: "right",
     },
   ];
@@ -140,7 +139,7 @@ export default function About() {
     { icon: <Award />, value: 10, label: "Projects Completed", suffix: "+" },
     { icon: <Users />, value: 5, label: "Happy Clients", suffix: "+" },
     { icon: <Calendar />, value: 2, label: "Years Experience", suffix: "" },
-    { icon: <TrendingUp />, value: 100, label: "Satisfaction", suffix: "%" },
+    { icon: <TrendingUp />, value: 30, label: "Usability Boost", suffix: "%" }, // Updated per your data
   ];
 
   return (
@@ -169,7 +168,6 @@ export default function About() {
           className="flex flex-col items-center mb-6"
           variants={itemVariants}
         >
-          {/* My Journey: Structure restored, Color updated to Blue */}
           <motion.span
             className="text-blue-500 font-medium mb-2 flex items-center gap-2 tracking-widest text-sm uppercase"
             initial={{ opacity: 0, y: -10 }}
@@ -181,7 +179,10 @@ export default function About() {
           </motion.span>
 
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Me</span>
+            About{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
+              Me
+            </span>
           </h2>
 
           <motion.div
@@ -192,17 +193,27 @@ export default function About() {
           ></motion.div>
         </motion.div>
 
-        <motion.p
-          className="text-center max-w-2xl mx-auto mb-16 text-gray-400 leading-relaxed text-lg"
-          variants={itemVariants}
+        {/* --- MAIN DESCRIPTION UPDATED HERE --- */}
+        <motion.div
+            className="text-center max-w-3xl mx-auto mb-16 text-gray-400 leading-relaxed text-lg space-y-4"
+            variants={itemVariants}
         >
-          Computer Science graduate from Udayana University with 2 years of
-          experience in UI/UX Design and Front-End Development. Adaptable,
-          creative, and eager to join innovative teams.
-        </motion.p>
+            <p>
+                Front-End Developer specializing in building modern interfaces using 
+                <span className="text-white font-medium"> Vue, Next.js, Laravel,</span> and <span className="text-white font-medium">Tailwind CSS</span>. 
+                I excel at translating user needs into responsive, clean, and user-friendly designs.
+            </p>
+            <p>
+                Previously at <span className="text-blue-400">Bhakti Widya Pharma</span>, I served as a Front-End Developer & UI/UX Designer, 
+                developing internal apps and collaborating across teams. I also led the redesign for <span className="text-white font-medium">Gahita.com</span>, 
+                increasing its usability score by <span className="text-cyan-400 font-bold">30%</span> through rigorous testing.
+            </p>
+            <p>
+                Currently, I&apos;m expanding my horizons into AR development with <span className="text-white font-medium">SwiftUI</span> and crafting interactive web experiences like this portfolio.
+            </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          
           <div className="space-y-12">
             {services
               .filter((service) => service.position === "left")
@@ -230,7 +241,6 @@ export default function About() {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
               >
-               
                 <img
                   src="/character.png"
                   alt="Feature Image"
@@ -246,14 +256,14 @@ export default function About() {
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.9 }}
                 >
-                  <motion.a 
+                  <motion.a
                     href="https://drive.google.com/drive/folders/11Cc6QY7wDl7aeetPDv1eHe_Y0sLukeCJ?usp=drive_link"
-                    target ="_blank"
+                    target="_blank"
                     className="group bg-white text-black px-6 py-2 rounded-full flex items-center gap-2 text-sm font-bold hover:bg-blue-50 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    My Resume 
+                    My Resume
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </motion.a>
                 </motion.div>
@@ -309,7 +319,7 @@ interface ServiceItemProps {
   secondaryIcon?: React.ReactNode;
   title: string;
   description: string;
-  variants: Variants; 
+  variants: Variants;
   delay: number;
   direction: "left" | "right";
 }

@@ -3,8 +3,8 @@
 import { useRef, useState, useEffect } from "react";
 import React from "react";
 import { cn } from "@/lib/utils";
-// PERUBAHAN DISINI: Mengganti Zap dengan Briefcase (atau icon pilihan lain)
-import { Briefcase } from "lucide-react";
+import { Briefcase, ExternalLink } from "lucide-react"; 
+import Link from "next/link"; 
 import {
   motion,
   useScroll,
@@ -139,30 +139,27 @@ const GlareCard = ({
 const projectsData = [
   {
     title: "Pizza Order App",
-    description:
-      "Aplikasi pemesanan makanan cepat saji dengan fitur keranjang dan tracking real-time.",
-    image:
-      "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=3540&auto=format&fit=crop",
+    description: "Aplikasi pemesanan makanan cepat saji dengan fitur keranjang dan tracking real-time.",
+    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=3540&auto=format&fit=crop",
+    link: "https://pizza-order-app-mu.vercel.app/" 
   },
   {
     title: "Farmaguru Apotek",
-    description:
-      "Sistem manajemen inventaris apotek yang membantu pencatatan obat masuk dan keluar.",
-    image:
-      "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=3569&auto=format&fit=crop",
+    description: "Sistem manajemen inventaris apotek yang membantu pencatatan obat masuk dan keluar.",
+    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=3569&auto=format&fit=crop",
+    link: "https://farmaguru-kamu.vercel.app"
   },
   {
     title: "Gahita",
-    description:
-      "Platform edukasi online dengan berbagai kursus interaktif dan materi pembelajaran.",
-    image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3232&auto=format&fit=crop",
+    description: "Platform edukasi online dengan berbagai kursus interaktif dan materi pembelajaran.",
+    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3232&auto=format&fit=crop",
+    link: "https://gahita.vercel.app"
   },
   {
     title: "App Tugas Akhir",
     description: "Aplikasi manajemen tugas akhir mahasiswa berbasis web.",
-    image:
-      "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=3540&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=3540&auto=format&fit=crop",
+    link: "https://tugas-akhir.vercel.app"
   },
 ];
 
@@ -230,7 +227,6 @@ export default function Project() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {/* PERUBAHAN DISINI: Icon Briefcase menggantikan Zap */}
             <Briefcase className="w-4 h-4" />
             My Work
           </motion.span>
@@ -262,22 +258,33 @@ export default function Project() {
               variants={itemVariants}
               className="w-full flex justify-center"
             >
-              <GlareCard className="flex flex-col items-start justify-end py-8 px-6">
-                <img
-                  className="absolute inset-0 h-full w-full object-cover opacity-60 hover:opacity-100 transition-opacity duration-500"
-                  src={project.image}
-                  alt={project.title}
-                />
-                
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+              {/* WRAPPER LINK */}
+              <Link 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="block h-full w-full group"
+              >
+                <GlareCard className="flex flex-col items-start justify-end py-8 px-6">
+                  <img
+                    className="absolute inset-0 h-full w-full object-cover opacity-60 hover:opacity-100 transition-opacity duration-500"
+                    src={project.image}
+                    alt={project.title}
+                  />
+                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
 
-                <div className="relative z-10">
-                  <p className="font-bold text-white text-lg">{project.title}</p>
-                  <p className="font-normal text-sm text-neutral-300 mt-2 line-clamp-3">
-                    {project.description}
-                  </p>
-                </div>
-              </GlareCard>
+                  <div className="relative z-10 w-full">
+                    <div className="flex items-center justify-between mb-2">
+                        <p className="font-bold text-white text-lg">{project.title}</p>
+                        <ExternalLink className="w-4 h-4 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                    <p className="font-normal text-sm text-neutral-300 line-clamp-3">
+                      {project.description}
+                    </p>
+                  </div>
+                </GlareCard>
+              </Link>
             </motion.div>
           ))}
         </motion.div>
