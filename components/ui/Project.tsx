@@ -139,21 +139,21 @@ const GlareCard = ({
 const projectsData = [
   {
     title: "Pizza Order App",
-    description: "Aplikasi pemesanan makanan cepat saji dengan fitur keranjang dan tracking real-time.",
+    description: "Personal Project Apps to order pizza online with user-friendly interface.",
     image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=3540&auto=format&fit=crop",
     link: "https://pizza-order-app-mu.vercel.app/" 
   },
   {
-    title: "Farmaguru Apotek",
-    description: "Sistem manajemen inventaris apotek yang membantu pencatatan obat masuk dan keluar.",
-    image: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?q=80&w=3569&auto=format&fit=crop",
-    link: "https://farmaguru-kamu.vercel.app"
+    title: "Personal Project",
+    description: "Make a personal portfolio website to showcase my skills and projects.",
+    image: "/sunset.jpg",
+    link: "https://personal-project-ruddy-chi.vercel.app/"
   },
   {
     title: "Gahita",
-    description: "Platform edukasi online dengan berbagai kursus interaktif dan materi pembelajaran.",
-    image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=3232&auto=format&fit=crop",
-    link: "https://gahita.vercel.app"
+    description: "Redesign website for Gahita, Capstone project from university.",
+    image: "/gahita.jpg",
+    link: "https://github.com/Rahmannn98/gahita.git"
   },
   {
     title: "App Tugas Akhir",

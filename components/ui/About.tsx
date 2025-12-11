@@ -139,7 +139,7 @@ export default function About() {
     { icon: <Award />, value: 10, label: "Projects Completed", suffix: "+" },
     { icon: <Users />, value: 5, label: "Happy Clients", suffix: "+" },
     { icon: <Calendar />, value: 2, label: "Years Experience", suffix: "" },
-    { icon: <TrendingUp />, value: 30, label: "Usability Boost", suffix: "%" }, // Updated per your data
+    { icon: <TrendingUp />, value: 30, label: "Usability Boost", suffix: "%" }, 
   ];
 
   return (
@@ -242,12 +242,10 @@ export default function About() {
                 whileHover={{ scale: 1.02, transition: { duration: 0.3 } }}
               >
                 <img
-                  src="/character.png"
+                  src="/rahman.jpg"
                   alt="Feature Image"
                   className="w-full h-[400px] object-cover grayscale hover:grayscale-0 transition-all duration-500"
                 />
-
-                {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-80" />
 
                 <motion.div
@@ -278,8 +276,6 @@ export default function About() {
               />
             </motion.div>
           </div>
-
-          {/* Right Column */}
           <div className="space-y-12">
             {services
               .filter((service) => service.position === "right")
