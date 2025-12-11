@@ -1,10 +1,10 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import React from "react";
 import { cn } from "@/lib/utils";
-import { Briefcase, ExternalLink } from "lucide-react"; 
-import Link from "next/link"; 
+import { Briefcase, ExternalLink, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import {
   motion,
   useScroll,
@@ -38,7 +38,7 @@ const GlareCard = ({
     "--duration": "300ms",
     "--foil-size": "100%",
     "--opacity": "0",
-    "--radius": "48px",
+    "--radius": "24px",
     "--easing": "ease",
     "--transition": "var(--duration) var(--easing)",
   } as React.CSSProperties;
@@ -71,7 +71,7 @@ const GlareCard = ({
   return (
     <div
       style={containerStyle}
-      className="relative isolate [contain:layout_style] [perspective:600px] transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-transform w-full md:w-[320px] [aspect-ratio:17/21]"
+      className="relative isolate [contain:layout_style] [perspective:600px] transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] will-change-transform w-full [aspect-ratio:4/5] md:[aspect-ratio:3.5/5]"
       ref={refElement}
       onPointerMove={(event) => {
         const rotateFactor = 0.4;
@@ -120,9 +120,9 @@ const GlareCard = ({
         }
       }}
     >
-      <div className="h-full grid will-change-transform origin-center transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] [transform:rotateY(var(--r-x))_rotateX(var(--r-y))] rounded-[var(--radius)] border border-white/10 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden">
+      <div className="h-full grid will-change-transform origin-center transition-transform duration-[var(--duration)] ease-[var(--easing)] delay-[var(--delay)] [transform:rotateY(var(--r-x))_rotateX(var(--r-y))] rounded-[var(--radius)] border border-neutral-800 hover:border-neutral-600 hover:[--opacity:0.6] hover:[--duration:200ms] hover:[--easing:linear] hover:filter-none overflow-hidden bg-neutral-900">
         <div className="w-full h-full grid [grid-area:1/1] mix-blend-soft-light [clip-path:inset(0_0_0_0_round_var(--radius))]">
-          <div className={cn("h-full w-full bg-black/80", className)}>
+          <div className={cn("h-full w-full bg-neutral-950", className)}>
             {children}
           </div>
         </div>
@@ -139,43 +139,44 @@ const GlareCard = ({
 const projectsData = [
   {
     title: "Pizza Order App",
-    description: "Personal Project Apps to order pizza online with user-friendly interface.",
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=3540&auto=format&fit=crop",
-    link: "https://pizza-order-app-mu.vercel.app/" 
+    description:
+      "Personal Project Apps to order pizza online with user-friendly interface.",
+    image:
+      "https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=3540&auto=format&fit=crop",
+    link: "https://pizza-order-app-mu.vercel.app/",
+    tags: ["Vue.js", "Tailwind"],
   },
   {
-    title: "Personal Project",
-    description: "Make a personal portfolio website to showcase my skills and projects.",
-    image: "/sunset.jpg",
-    link: "https://personal-project-ruddy-chi.vercel.app/"
+    title: "Portfolio V1",
+    description:
+      "Make a personal portfolio website to showcase my skills and projects.",
+    image:
+      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=3540&auto=format&fit=crop",
+    link: "https://personal-project-ruddy-chi.vercel.app/",
+    tags: ["Next.Js", "Framer Motion"],
   },
   {
     title: "Gahita",
-    description: "Redesign website for Gahita, Capstone project from university.",
-    image: "/gahita.jpg",
-    link: "https://github.com/Rahmannn98/gahita.git"
-  },
-  {
-    title: "App Tugas Akhir",
-    description: "Aplikasi manajemen tugas akhir mahasiswa berbasis web.",
-    image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=3540&auto=format&fit=crop",
-    link: "https://tugas-akhir.vercel.app"
+    description:
+      "Redesign website for Gahita, Capstone project from university.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+    link: "https://github.com/Rahmannn98/gahita.git",
+    tags: ["Laravel", "Tailwind"],
   },
 ];
 
 export default function Project() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.1 });
+  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
-  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 20]);
-  const rotate2 = useTransform(scrollYProgress, [0, 1], [0, -20]);
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const rotate1 = useTransform(scrollYProgress, [0, 1], [0, 45]);
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -183,103 +184,110 @@ export default function Project() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { y: 20, opacity: 0 },
+    hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.6, ease: "easeInOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
   return (
-    <section 
-      ref={sectionRef} 
-      className="w-full py-24 px-4 bg-black text-white relative overflow-hidden"
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="w-full py-24 px-4 bg-neutral-950 text-white relative overflow-hidden"
     >
-       <motion.div
-        className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue-600/20 blur-[100px]"
+      <motion.div
+        className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-blue-900/20 blur-[120px] -z-10"
         style={{ y: y1, rotate: rotate1 }}
       />
-      <motion.div
-        className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-cyan-500/10 blur-[120px]"
-        style={{ y: y2, rotate: rotate2 }}
-      />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full bg-cyan-900/10 blur-[100px] -z-10" />
 
-      <motion.div 
-        className="container mx-auto relative z-10"
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        variants={containerVariants}
-      >
+      <div className="container mx-auto relative z-10 max-w-6xl">
         <motion.div
-          className="flex flex-col items-center mb-16"
-          variants={itemVariants}
-        >
-          <motion.span
-            className="text-blue-500 font-medium mb-2 flex items-center gap-2 tracking-widest text-sm uppercase"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <Briefcase className="w-4 h-4" />
-            My Work
-          </motion.span>
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-center text-white">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Projects</span>
-          </h2>
-
-          <motion.div
-            className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full mb-8"
-            initial={{ width: 0 }}
-            animate={{ width: 96 }}
-            transition={{ duration: 1, delay: 0.5 }}
-          ></motion.div>
-
-          <p className="text-neutral-400 max-w-2xl mx-auto text-center text-lg leading-relaxed">
-            Here are some of the projects I&apos;ve worked on, ranging from web
-            applications to complex management systems.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 justify-items-center"
+          className="flex flex-col items-center mb-16 text-center"
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
           variants={containerVariants}
         >
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold tracking-wider uppercase mb-4"
+          >
+            <Briefcase className="w-3 h-3" />
+            My Projects
+          </motion.div>
+
+          <motion.h2
+            variants={itemVariants}
+            className="text-4xl md:text-5xl font-bold mb-4 tracking-tight"
+          >
+            Featured <span className="text-blue-500">Projects</span>
+          </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-neutral-400 max-w-2xl text-lg leading-relaxed"
+          >
+            A selection of projects that showcase my passion for building clean,
+            robust, and user-friendly web applications.
+          </motion.p>
+        </motion.div>
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 justify-items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate={isInView ? "visible" : "hidden"}
+        >
           {projectsData.map((project, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               variants={itemVariants}
-              className="w-full flex justify-center"
+              className="w-full h-full"
             >
-              {/* WRAPPER LINK */}
-              <Link 
-                href={project.link} 
-                target="_blank" 
+              <Link
+                href={project.link}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="block h-full w-full group"
               >
-                <GlareCard className="flex flex-col items-start justify-end py-8 px-6">
-                  <img
-                    className="absolute inset-0 h-full w-full object-cover opacity-60 hover:opacity-100 transition-opacity duration-500"
-                    src={project.image}
-                    alt={project.title}
-                  />
-                  
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                <GlareCard className="relative flex flex-col justify-end h-full w-full overflow-hidden">
+                  <div className="absolute inset-0 h-full w-full bg-neutral-900">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="h-full w-full object-cover opacity-100 group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                    />
+                  </div>
 
-                  <div className="relative z-10 w-full">
-                    <div className="flex items-center justify-between mb-2">
-                        <p className="font-bold text-white text-lg">{project.title}</p>
-                        <ExternalLink className="w-4 h-4 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80" />
+
+                  <div className="relative z-20 p-6 flex flex-col h-full justify-end">
+                    <div className="absolute top-5 right-5 w-10 h-10 bg-white/10 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                      <ArrowUpRight className="w-5 h-5 text-white" />
                     </div>
-                    <p className="font-normal text-sm text-neutral-300 line-clamp-3">
+
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {project.tags.map((tag, tIndex) => (
+                        <span
+                          key={tIndex}
+                          className="text-[10px] uppercase font-bold px-2 py-1 bg-blue-500/20 text-blue-300 rounded border border-blue-500/20 backdrop-blur-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <h3 className="font-bold text-white text-xl mb-2 group-hover:text-blue-400 transition-colors">
+                      {project.title}
+                    </h3>
+                    <p className="font-normal text-sm text-neutral-300 line-clamp-3 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
@@ -288,7 +296,21 @@ export default function Project() {
             </motion.div>
           ))}
         </motion.div>
-      </motion.div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ delay: 0.8 }}
+          className="flex justify-center mt-12"
+        >
+          <a
+            href="https://github.com/Rahmannn98"
+            target="_blank"
+            className="text-neutral-500 hover:text-white transition-colors flex items-center gap-2 text-sm font-medium"
+          >
+            View all archives <ArrowUpRight className="w-4 h-4" />
+          </a>
+        </motion.div>
+      </div>
     </section>
   );
 }

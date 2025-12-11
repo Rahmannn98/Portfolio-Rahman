@@ -255,7 +255,7 @@ export default function About() {
                   transition={{ duration: 0.8, delay: 0.9 }}
                 >
                   <motion.a
-                    href="https://drive.google.com/drive/folders/11Cc6QY7wDl7aeetPDv1eHe_Y0sLukeCJ?usp=drive_link"
+                    href="https://drive.google.com/file/d/1DwpUJigyKXP6Z9QXvbuBL5KA5fLPIyJd/view?usp=sharing"
                     target="_blank"
                     className="group bg-white text-black px-6 py-2 rounded-full flex items-center gap-2 text-sm font-bold hover:bg-blue-50 transition-all shadow-[0_0_15px_rgba(255,255,255,0.3)]"
                     whileHover={{ scale: 1.05 }}
